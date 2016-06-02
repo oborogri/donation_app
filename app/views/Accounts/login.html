@@ -1,9 +1,11 @@
-#{extends 'main.html' /} #{set title:'Home' /}
-<nav class="ui menu">
-	<a class="ui item" href="/home">Home</a> 
-	<a class="ui active item" href="/login">Log In</a>
-	<a class="ui item" href="/signup">Sign Up</a>
-</nav>
+#{extends 'main.html' /} #{set title:'Login' /}
+<div class="ui inverted teal menu">
+	<a class="ui active item" href="/home">Home</a> 
+	<a class="ui item" href="/signup">Sign Up</a> 
+	<a class="ui item" href="/login">Login</a>
+	<a class="ui item" href="/donation">Make Donation</a> 
+	<a class="ui item" href="/logout">Log Out</a>
+</div>
 <div class="ui segment">
 	<form class="ui form segment" action="/authenticate" method="POST">
 		<div class="field">
@@ -17,6 +19,8 @@
 					name="password">
 			</div>
 		</div>
-		<button class="ui teal button" type="submit">Submit</button>
+		<button class="ui teal button" type="submit">Login</button>
+		<div class="ui message">Don't have an account? <a href="/signup">Sign up here </a> We look forward to your generous contribution!
+			</div>
 	</form>
 </div>

@@ -7,10 +7,10 @@ import java.util.*;
 
 import models.*;
 
-public class Welcome extends Controller {
+public class Donation extends Controller {
 
 	public static void index() {
+		
 		render();
-
+		}
 	}
-}

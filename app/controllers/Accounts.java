@@ -33,6 +33,7 @@ public class Accounts extends Controller {
 	}
 
 	/**
+	 * Checks login details are correct
 	 * 
 	 * @param email
 	 * @param password
@@ -80,11 +81,10 @@ public class Accounts extends Controller {
 	/**
 	 * Compares two users based on their e-mails
 	 * 
-	 * @param User
-	 *            a
-	 * @param User
-	 *            b
-	 * @return
+	 * @param User a
+	 * @param User b
+	 * 
+	 * @return true if user e-mails are the same
 	 */
 	private static boolean equalUser(User a, User b) {
 		return (a.email.equals(b.email));
@@ -94,7 +94,7 @@ public class Accounts extends Controller {
 	 * Checks valid e-mail format
 	 * 
 	 * @param email
-	 * @return
+	 * @return true if e-mail not null and is a valid format 
 	 */
 	public static boolean isValidEmailAddress(String email) {
 

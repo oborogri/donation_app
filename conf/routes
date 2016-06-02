@@ -4,7 +4,7 @@
 
 # Welcome page
 GET     /                                       Welcome.index
-GET     /donate                                 Welcome.index
+GET     /donation                               Donation.index
 
 # Accounts     
 GET    /home                                    Welcome.index                        
@@ -12,7 +12,7 @@ GET    /signup                                  Accounts.signup
 GET    /login                                   Accounts.login
 GET    /logout                                  Accounts.logout
 GET    /error                                   Accounts.error
-GET    /donate                                  Accounts.donate
+GET    /donation                                Donation.index
 
 POST   /register                                Accounts.register
 POST   /authenticate                            Accounts.authenticate
