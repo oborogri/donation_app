@@ -2,8 +2,20 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
-GET     /                                       Application.index
+# Welcome page
+GET     /                                       Welcome.index
+GET     /donate                                 Welcome.index
+
+# Accounts     
+GET    /home                                    Welcome.index                        
+GET    /signup                                  Accounts.signup
+GET    /login                                   Accounts.login
+GET    /logout                                  Accounts.logout
+GET    /error                                   Accounts.error
+GET    /donate                                  Accounts.donate
+
+POST   /register                                Accounts.register
+POST   /authenticate                            Accounts.authenticate
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
