@@ -8,24 +8,21 @@
 	<div class="left aligned column">
 		<h2 class="ui header">Welcome ${user.firstName}</h2>
 		<h5>Please give generously</h5>
-		<form class="ui form segment" action="/donation" method="POST">
+		<form action="/donation" method="POST">
 			<h4 class="ui header">Select an amount</h4>
-			<div class="ui compact menu">
-				<div class="ui simple dropdown item">
-					Amount <i class="dropdown icon"></i> <select name="received">
-						<option value="$100">$100</option>
-						<option value="$500">$500</option>
-						<option value="$1000" selected>$1000</option>
-					</select>
-				</div>
-			</div>
-			<br> <br> <input type="radio" name="methoddonated"
-				value="paypal"> PayPal <br> <input type="radio"
-				name="methoddonated" value="direct"> Direct <br>
-			<br>
+			<select name="received">
+				<option value="100">$100</option>
+				<option value="500">$500</option>
+				<option value="1000">$1000</option>
+			</select><br> <br> <input type="radio"
+				name="methoddonated" value="paypal"> PayPal <br> <br>
+			<input type="radio" name="methoddonated" value="direct">
+			Direct <br> <br>
 			<button class="ui teal button" type="submit">
 				<i class="plus icon"></i> DONATE
 			</button>
+			<a class="ui teal button" href="/donate">
+				<i class="ban icon"></i> Cancel</a>
 		</form>
 	</div>
 </div>
