@@ -20,6 +20,9 @@ public class User extends Model {
 	public String password;
 	public boolean usacitizen;
 
+	@OneToMany(mappedBy = "from_id")
+	public List<Donation> donations = new ArrayList<Donation>();
+
     public User(String firstName, String lastName, String email, String password, boolean usacitizen) {
 
 		this.firstName = firstName;
@@ -28,6 +31,14 @@ public class User extends Model {
 		this.password = password;
 		this.usacitizen = usacitizen;
 	}
+    
+    public void donate(int received, String methoddonated) {
+			Donation donation = new Donation(methoddonated, received, this.id);
+			donations.add(donation);
+			donation.save();
+			save();
+	
+		}
 
 	public static User findByEmail(String email) {
 		return find("email", email).first();

@@ -4,6 +4,10 @@ User(homer):
     email: homer@simpson.com
     usacitizen: TRUE
     password: secret
+    donations:
+              - donation1
+              - donation2
+              - donation3
     
 User(marge):
     firstName: Marge
@@ -11,6 +15,8 @@ User(marge):
     email: marge@simpson.com
     usacitizen: TRUE
     password: secret
+    donations:
+              - donation5
         
 User(maggie):
     firstName: Maggie
@@ -18,6 +24,8 @@ User(maggie):
     email: maggie@simpson.com
     usacitizen: TRUE
     password: secret
+    donations:
+              - donation4
         
 User(lisa):
     firstName: Lisa
@@ -32,3 +40,29 @@ User(bart):
     email: bart@simpson.com
     usacitizen: TRUE
     password: secret
+    
+Donation(1):
+    methoddonated: paypal
+    received: 1000
+    from_id: 1
+    
+Donation(2):
+    methoddonated: paypal
+    received: 1000
+    from_id: 1
+    
+Donation(3):
+    methoddonated: paypal
+    received: 1000
+    from_id: 1
+    
+Donation(4):
+    methoddonated: direct
+    received: 100
+    from_id: 4
+    
+Donation(5):
+    methoddonated: paypal
+    received: 100
+    from_id: 2
+     

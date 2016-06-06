@@ -4,7 +4,7 @@
 
 # Welcome page
 GET     /                                       Welcome.index
-GET     /donation                               Donation.index
+GET     /donation                               DonationController.index
 
 # Accounts     
 GET    /home                                    Welcome.index                        
@@ -12,10 +12,15 @@ GET    /signup                                  Accounts.signup
 GET    /login                                   Accounts.login
 GET    /logout                                  Accounts.logout
 GET    /error                                   Accounts.error
-GET    /donation                                Donation.index
+GET    /donate                                  DonationController.donate
 
 POST   /register                                Accounts.register
 POST   /authenticate                            Accounts.authenticate
+
+#DonationController
+GET    /donate                                  DonationController.donate
+
+POST   /donation                                DonationController.donation
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

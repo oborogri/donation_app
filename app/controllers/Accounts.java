@@ -2,6 +2,9 @@ package controllers;
 
 import play.*;
 import play.mvc.*;
+
+import java.util.List;
+
 import java.util.*;
 
 import javax.mail.internet.AddressException;
@@ -10,10 +13,6 @@ import javax.mail.internet.InternetAddress;
 import models.*;
 
 public class Accounts extends Controller {
-
-	public static void index() {
-		render();
-	}
 
 	public static void signup() {
 		render();
@@ -44,7 +43,7 @@ public class Accounts extends Controller {
 		if ((user != null) && (user.checkPassword(password) == true)) {
 			Logger.info("Authentication successful");
 			session.put("logged_in_userid", user.id);
-			Accounts.index();
+			DonationController.donate();
 		} else {
 			Logger.info("Authentication failed");
 			error();
