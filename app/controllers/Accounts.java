@@ -14,21 +14,33 @@ import models.*;
 
 public class Accounts extends Controller {
 
+	/**
+	 * Renders signup page
+	 */
 	public static void signup() {
 		render();
 	}
 
+	/**
+	 * Renders login page
+	 */
 	public static void login() {
 		render();
 	}
 
+	/**
+	 * Renders error page
+	 */
 	public static void error() {
 		render();
 	}
 
+	/**
+	 * Logs out user and renders start page
+	 */
 	public static void logout() {
 		session.clear();
-		render();
+		Welcome.index();
 	}
 
 	/**
@@ -40,10 +52,12 @@ public class Accounts extends Controller {
 	public static void authenticate(String email, String password) {
 		Logger.info("Attempting to authenticate with " + email + " : " + password);
 		User user = User.findByEmail(email);
+
 		if ((user != null) && (user.checkPassword(password) == true)) {
 			Logger.info("Authentication successful");
 			session.put("logged_in_userid", user.id);
 			DonationController.donate();
+
 		} else {
 			Logger.info("Authentication failed");
 			error();
@@ -51,12 +65,11 @@ public class Accounts extends Controller {
 	}
 
 	/**
-	 * Registers new user with details entered on sign up page 
-	 * Displays error message when user already registered and if user not USA citizen
+	 * Registers new user with details entered on sign up page Displays error
+	 * message if user already registered and if user not USA citizen
 	 * 
 	 * @param user
 	 */
-
 	public static void register(User user) {
 		List<User> users = User.findAll();
 
@@ -68,20 +81,22 @@ public class Accounts extends Controller {
 		}
 		if ((isValidEmailAddress(user.email) && ((user.usacitizen != false)))) {
 			user.save();
-			Logger
-					.info("New member details: " + user.firstName + " " + user.lastName + " " + user.email + " " + user.password);
+			Logger.info("New member details: " + user.firstName + " " + user.lastName + " " + user.email + " "
+					+ user.password);
 			Welcome.index();
 		} else {
 			Logger.info("Error - user " + user.email + " not registered! Please check your details!");
 			error();
 		}
 	}
-		
+
 	/**
 	 * Compares two users based on their e-mails
 	 * 
-	 * @param User a
-	 * @param User b
+	 * @param User
+	 *            a
+	 * @param User
+	 *            b
 	 * 
 	 * @return true if user e-mails are the same
 	 */
@@ -93,7 +108,7 @@ public class Accounts extends Controller {
 	 * Checks valid e-mail format
 	 * 
 	 * @param email
-	 * @return true if e-mail not null and is a valid format 
+	 * @return true if e-mail not null and is a valid format
 	 */
 	public static boolean isValidEmailAddress(String email) {
 

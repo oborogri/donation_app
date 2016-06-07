@@ -19,6 +19,7 @@ POST   /authenticate                            Accounts.authenticate
 
 #DonationController
 GET    /donate                                  DonationController.donate
+GET    /donationerror                           DonationController.donationerror
 
 POST   /donation                                DonationController.donation
 

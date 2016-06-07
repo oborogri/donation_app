@@ -1,4 +1,4 @@
-#{extends 'main.html' /} #{set title:'Donate' /}
+#{extends 'main.html' /} #{set title:'Donation' /}
 <div class="ui inverted teal menu">
 	<a class="ui item" href="/home">Home</a> <a class="ui active item">Make
 		Donation</a> <a class="ui item" href="/report">Report</a> <a
@@ -7,22 +7,36 @@
 <div class="ui three column stackable grid">
 	<div class="left aligned column">
 		<h2 class="ui header">Welcome ${user.firstName}</h2>
-		<h5>Please give generously</h5>
+		<h4>Please give generously</h4>
 		<form action="/donation" method="POST">
 			<h4 class="ui header">Select an amount</h4>
 			<select name="received">
 				<option value="100">$100</option>
 				<option value="500">$500</option>
 				<option value="1000">$1000</option>
-			</select><br> <br> <input type="radio"
-				name="methoddonated" value="paypal"> PayPal <br> <br>
-			<input type="radio" name="methoddonated" value="direct">
-			Direct <br> <br>
+			</select><br> <br>
+			<div class="required field">
+				<input type="radio" name="methoddonated" value="paypal">
+				PayPal <br> <br>
+			</div>
+			<div class="required field">
+				<input type="radio" name="methoddonated" value="direct">
+				Direct <br> <br>
+			</div>
 			<button class="ui teal button" type="submit">
 				<i class="plus icon"></i> DONATE
 			</button>
-			<a class="ui teal button" href="/donate">
-				<i class="ban icon"></i> Cancel</a>
+			<a class="ui teal button" href="/donate"> <i class="ban icon"></i>
+				Cancel
+			</a>
 		</form>
+		<div class="ui segment">
+			<h4 class="ui header">Amount target achieved</h4>
+			<div class="bar">
+				<div class="ui teal successful progress">
+					<div class="bar" style="width: ${progress}%"></div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
