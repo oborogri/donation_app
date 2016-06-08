@@ -1,9 +1,9 @@
 #{extends 'main.html' /} #{set title:'Sign Up' /}
 <div class="ui inverted teal menu">
-	<a class="ui active item" href="/home">Home</a> <a class="ui item"
-		href="/signup">Sign Up</a> <a class="ui item" href="/login">Login</a>
-	<a class="ui item" href="/donation">Make Donation</a> <a
-		class="ui item" href="/logout">Log Out</a>
+	<a class="ui item" href="/home">Home</a> 
+	<a class="ui active item">Sign Up</a>
+	<a class="ui item" href="/login">Login</a>
+	<a class="ui item" href="/donation">Make Donation</a>
 </div>
 <div class="ui segment">
 	<form class="ui form segment" action="/register" method="POST">
@@ -33,6 +33,8 @@
 				name="user.password">
 		</div>
 		<button class="ui teal button" type="submit">Signup</button>
+		<a class="ui teal button" href="/home"> <i class="ban icon"></i>
+		Cancel</a>
 		<div class="ui message">
 			Already have an account? <a href="/login">Login here </a> We look
 			forward to your generous contribution!

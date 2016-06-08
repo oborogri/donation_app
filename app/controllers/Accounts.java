@@ -119,7 +119,8 @@ public class Accounts extends Controller {
 	}
 
 	/**
-	 * Redirects to sign in page if user not logged and tries to access Make Donation
+	 * Redirects to sign in page if user not logged and tries to access Make
+	 * Donation
 	 */
 	public static void donate() {
 		if (session.get("logged_in_userid") == null) {

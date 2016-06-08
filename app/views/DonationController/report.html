@@ -10,6 +10,7 @@
 	<thead>
 		<tr>
 			<th>Donors</th>
+			<th>Time donated</th>
 			<th>Amount($)</th>
 			<th>Method donated</th>
 		</tr>
@@ -18,9 +19,17 @@
 		#{list items:donations, as:'donation'}
 		<tr>
 			<td class="ui six wide column">${donation.from.email}</td>
+			<td class="ui two wide column">${donation.donatedAt}</td>
 			<td class="ui two wide column">${donation.received}</td>
 			<td class="ui two wide column">${donation.methoddonated}</td>
 		</tr>
 		#{/list}
 	</tbody>
-</table>
+  </table>
+  <div class="ui segment">
+	  <div class="bar">
+	      <div class="ui teal successful progress">
+			 <div class="bar" style="width: ${totalprogress}%">${totalprogress}% Target achieved</div>
+			</div>
+		</div>
+	</div>

@@ -1,18 +1,17 @@
 #{extends 'main.html' /} #{set title:'Login' /}
 <div class="ui inverted teal menu">
-	<a class="ui active item" href="/home">Home</a> 
-	<a class="ui item" href="/signup">Sign Up</a> 
-	<a class="ui item" href="/login">Login</a>
-	<a class="ui item" href="/donation">Make Donation</a> 
-	<a class="ui item" href="/logout">Log Out</a>
+	<a class="ui item" href="/home">Home</a>
+	<a class="ui item" href="/signup">Sign Up</a>
+	<a class="ui active item">Login</a>
+	<a class="ui item" href="/donation">Make Donation</a>
 </div>
 <div class="ui segment">
 	<form class="ui form segment" action="/authenticate" method="POST">
 		<div class="field">
-		<h3 class="ui header"> Log In</h3>
+			<h3 class="ui header">Log In</h3>
 			<div class="required field">
-				<label>Username:</label> <input placeholder="e-mail"
-					type="text" name="email">
+				<label>Username:</label> <input placeholder="e-mail" type="text"
+					name="email">
 			</div>
 			<div class="required field">
 				<label>Password</label> <input placeholder="password" type="text"
@@ -20,7 +19,9 @@
 			</div>
 		</div>
 		<button class="ui teal button" type="submit">Login</button>
-		<div class="ui message">Don't have an account? <a href="/signup">Sign up here </a> We look forward to your generous contribution!
-			</div>
+		<div class="ui message">
+			Don't have an account? <a href="/signup">Sign up here </a> We look
+			forward to your generous contribution!
+		</div>
 	</form>
 </div>

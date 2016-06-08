@@ -95,19 +95,23 @@ public class DonationController extends Controller {
 	 */
 	public static float getProgress() {
 
-		String userId = session.get("logged_in_userid");
-		User from = User.findById(Long.parseLong(userId));
+		List<Donation> donations = Donation.findAll();
+		int totaldonations = 0;
 
-		float progress = ((float) (getContribution(from)) * 100) / Donation.donationtarget;
+		for (Donation d : donations) {
 
-		Logger.info(from.email + " Percentage target achieved: " + progress);
+			totaldonations += d.received;
+		}
+
+		float progress = ((float) (totaldonations * 100) / Donation.donationtarget);
 
 		return progress;
 
 	}
 
 	/**
-	 * Lists all donations and renders report page
+	 * Lists all donations and calculates total amount donated and target
+	 * achieved renders totals to report page
 	 */
 
 	public static void report() {
@@ -115,9 +119,21 @@ public class DonationController extends Controller {
 		User from = User.findById(Long.parseLong(userId));
 
 		List<Donation> donations = Donation.findAll();
-
 		Logger.info(from.email + " Number donations: " + from.donations.size());
 
-		render(donations);
+		int totaldonations = 0;
+
+		// calculates total amount donated by all members
+		for (Donation d : donations) {
+
+			totaldonations += d.received;
+		}
+
+		float totalprogress = getProgress();
+
+		Logger.info("Total donations received to date: " + totaldonations);
+		Logger.info("Target achieved: " + totalprogress + " %");
+
+		render(donations, totalprogress, totaldonations);
 	}
 }

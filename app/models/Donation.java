@@ -11,6 +11,7 @@ import play.db.jpa.Blob;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Donation model class
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 public class Donation extends Model {
 	public String methoddonated;
 	public long received;
+	public Date donatedAt;
 	public static long donationtarget = 20000;
 
 	@ManyToOne
@@ -39,5 +41,6 @@ public class Donation extends Model {
 		this.methoddonated = methoddonated;
 		this.received = received;
 		this.from = from;
+		donatedAt = new Date();
 	}
 }
