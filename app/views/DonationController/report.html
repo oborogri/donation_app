@@ -1,0 +1,26 @@
+#{extends 'main.html' /} #{set title:'Report' /}
+<div class="ui inverted teal menu">
+	<a class="ui item" href="/home">Home</a> 
+	<a class="ui item" href="/donate">Make Donation</a> 
+	<a class="ui active item" href="/report">Report</a> 
+	<a class="ui item" href="/logout">Log Out</a>
+</div>
+<h3 class="ui header">List Donations</h3>
+<table class="ui fixed celled table">
+	<thead>
+		<tr>
+			<th>Donors</th>
+			<th>Amount($)</th>
+			<th>Method donated</th>
+		</tr>
+	</thead>
+	<tbody>
+		#{list items:donations, as:'donation'}
+		<tr>
+			<td class="ui six wide column">${donation.from.email}</td>
+			<td class="ui two wide column">${donation.received}</td>
+			<td class="ui two wide column">${donation.methoddonated}</td>
+		</tr>
+		#{/list}
+	</tbody>
+</table>

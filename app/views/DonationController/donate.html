@@ -6,11 +6,12 @@
 </div>
 <div class="ui three column stackable grid">
 	<div class="left aligned column">
-		<h2 class="ui header">Welcome ${user.firstName}</h2>
+		<h2 class="ui header">Welcome ${from.firstName}</h2>
 		<h4>Please give generously</h4>
 		<form action="/donation" method="POST">
 			<h4 class="ui header">Select an amount</h4>
 			<select name="received">
+			    <option value="0">Amount</option>
 				<option value="100">$100</option>
 				<option value="500">$500</option>
 				<option value="1000">$1000</option>
@@ -29,7 +30,7 @@
 			<h4 class="ui header">Amount target achieved</h4>
 			<div class="bar">
 				<div class="ui teal successful progress">
-					<div class="bar" style="width: ${progress}%"></div>
+					<div class="bar" style="width: ${progress}%">${progress}%</div>
 				</div>
 			</div>
 		</div>

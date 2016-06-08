@@ -22,11 +22,11 @@ public class DonationController extends Controller {
 	 */
 	public static void donationerror() {
 		String userId = session.get("logged_in_userid");
-		User user = User.findById(Long.parseLong(userId));
+		User from = User.findById(Long.parseLong(userId));
 
 		double progress = getProgress();
 
-		render(user, progress);
+		render(from, progress);
 
 	}
 
@@ -35,11 +35,11 @@ public class DonationController extends Controller {
 	 */
 	public static void donate() {
 		String userId = session.get("logged_in_userid");
-		User user = User.findById(Long.parseLong(userId));
+		User from = User.findById(Long.parseLong(userId));
 
-		double progress = getProgress();
+		float progress = getProgress();
 
-		render(user, progress);
+		render(from, progress);
 	}
 
 	/**
@@ -51,19 +51,21 @@ public class DonationController extends Controller {
 	 */
 	public static void donation(String methoddonated, int received) {
 
-		String from_id = session.get("logged_in_userid");
-		User user = User.findById(Long.parseLong(from_id));
+		String userId = session.get("logged_in_userid");
+		User from = User.findById(Long.parseLong(userId));
 
-		if (methoddonated == null) {
+		if ((methoddonated == null) || (received < 1)) {
 			Logger.info("No payment method selected");
 			donationerror();
+		}
 
-		} else {
-			user.donate(received, methoddonated, user);
+		else {
 
-			double progress = getProgress();
+			from.donate(received, methoddonated);
+			Logger.info(from.email + " Just donated: " + received);
+			float progress = getProgress();
 
-			render(user, progress);
+			render(from, progress);
 		}
 	}
 
@@ -73,12 +75,16 @@ public class DonationController extends Controller {
 	 * @param user
 	 * @return contribution
 	 */
-	public static long getContribution(User user) {
+	public static long getContribution(User from) {
 		long contribution = 0;
 
-		for (Donation d : user.donations) {
+		for (Donation d : from.donations) {
 			contribution += d.received;
+
 		}
+		Logger.info(from.email + " Number contributions " + from.donations.size());
+		Logger.info(from.email + " Total contributions: " + contribution);
+
 		return contribution;
 	}
 
@@ -87,13 +93,31 @@ public class DonationController extends Controller {
 	 * 
 	 * @return progress percentage of donation target
 	 */
-	public static double getProgress() {
+	public static float getProgress() {
 
 		String userId = session.get("logged_in_userid");
-		User user = User.findById(Long.parseLong(userId));
+		User from = User.findById(Long.parseLong(userId));
 
-		double progress = (getContribution(user) * 100) / Donation.donationtarget;
+		float progress = ((float) (getContribution(from)) * 100) / Donation.donationtarget;
+
+		Logger.info(from.email + " Percentage target achieved: " + progress);
+
 		return progress;
 
+	}
+
+	/**
+	 * Lists all donations and renders report page
+	 */
+
+	public static void report() {
+		String userId = session.get("logged_in_userid");
+		User from = User.findById(Long.parseLong(userId));
+
+		List<Donation> donations = Donation.findAll();
+
+		Logger.info(from.email + " Number donations: " + from.donations.size());
+
+		render(donations);
 	}
 }

@@ -21,21 +21,23 @@ import java.util.ArrayList;
 @Entity
 public class Donation extends Model {
 	public String methoddonated;
-	public int received;
-	public long from_id;
+	public long received;
 	public static long donationtarget = 20000;
+
+	@ManyToOne
+	public User from;
 
 	/**
 	 * Constructor method for Donation object
 	 * 
 	 * @param methoddonated
 	 * @param received
-	 * @param from_id
+	 * @param user
 	 */
-	public Donation(String methoddonated, int received, long from_id) {
+	public Donation(String methoddonated, long received, User from) {
 
 		this.methoddonated = methoddonated;
 		this.received = received;
-		this.from_id = from_id;
+		this.from = from;
 	}
 }

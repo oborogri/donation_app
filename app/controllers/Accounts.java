@@ -110,7 +110,7 @@ public class Accounts extends Controller {
 	 * @param email
 	 * @return true if e-mail not null and is a valid format
 	 */
-	public static boolean isValidEmailAddress(String email) {
+	private static boolean isValidEmailAddress(String email) {
 
 		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
 		java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
@@ -119,8 +119,7 @@ public class Accounts extends Controller {
 	}
 
 	/**
-	 * Redirects to sign in page if user not logged and tries to access Make
-	 * Donation
+	 * Redirects to sign in page if user not logged and tries to access Make Donation
 	 */
 	public static void donate() {
 		if (session.get("logged_in_userid") == null) {
@@ -133,5 +132,4 @@ public class Accounts extends Controller {
 			render(user);
 		}
 	}
-
 }

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import controllers.DonationController;
 import play.db.jpa.Model;
 import play.Logger;
 import play.db.jpa.Blob;
@@ -22,7 +23,7 @@ public class User extends Model {
 	/**
 	 * Sets up a one to many relationship between User and Donation
 	 */
-	@OneToMany(mappedBy = "from_id")
+	@OneToMany(mappedBy = "from")
 	public List<Donation> donations = new ArrayList<Donation>();
 
 	/**
@@ -34,7 +35,6 @@ public class User extends Model {
 	 * @param password
 	 * @param usacitizen
 	 */
-
 	public User(String firstName, String lastName, String email, String password, boolean usacitizen) {
 
 		this.firstName = firstName;
@@ -56,6 +56,23 @@ public class User extends Model {
 	}
 
 	/**
+	 * Facilitates donation an amount of money by user
+	 * 
+	 * @param received
+	 *            - amount donated by user
+	 * @param methoddonated
+	 */
+	public void donate(long received, String methoddonated) {
+
+		Donation donation = new Donation(methoddonated, received, this);
+
+		// adds donation amount to user donations total
+		this.donations.add(donation);
+		donation.save();
+		this.save();
+	}
+
+	/**
 	 * Facilitates rendering user full name
 	 * 
 	 * @param user
@@ -67,30 +84,11 @@ public class User extends Model {
 	}
 
 	/**
-	 * Facilitates donation an amount of money by user
-	 * 
-	 * @param received
-	 *            - amount donated by user
-	 * @param methoddonated
-	 */
-	public void donate(int received, String methoddonated, User user) {
-
-		Donation donation = new Donation(methoddonated, received, this.id);
-
-		// adds donation amount to user donations total
-		user.donations.add(donation);
-		donation.save();
-		save();
-
-	}
-
-	/**
 	 * Validates user password
 	 * 
 	 * @param password
 	 * @return true if password match
 	 */
-
 	public boolean checkPassword(String password) {
 		return this.password.equals(password);
 	}
